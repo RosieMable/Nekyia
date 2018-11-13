@@ -43,3 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Enemies
+    uniqueID: 3891521341
+    locked: 0
+  - name: Rooms
+    uniqueID: 82934353
+    locked: 0
