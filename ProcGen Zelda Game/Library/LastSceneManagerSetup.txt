@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/SpawnTry.unity
+- path: Assets/Scenes/AssetsStuff.unity
   isLoaded: 1
   isActive: 1
