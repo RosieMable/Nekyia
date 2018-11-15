@@ -61,10 +61,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\AddRoom.cs" />
-    <Compile Include="Assets\Scripts\Destroyer.cs" />
-    <Compile Include="Assets\Scripts\RoomSpawner.cs" />
-    <Compile Include="Assets\Scripts\RoomsTemplates.cs" />
+    <Compile Include="Assets\Scripts\NewProcGen\LevelGeneration.cs" />
+    <Compile Include="Assets\Scripts\NewProcGen\MapSpriteSelector.cs" />
+    <Compile Include="Assets\Scripts\NewProcGen\Room.cs" />
+    <Compile Include="Assets\Scripts\OldProcGen\AddRoom.cs" />
+    <Compile Include="Assets\Scripts\OldProcGen\Destroyer.cs" />
+    <Compile Include="Assets\Scripts\OldProcGen\RoomSpawner.cs" />
+    <Compile Include="Assets\Scripts\OldProcGen\RoomsTemplates.cs" />
     <None Include="Assets\Tiny Dungeon Pack\Thanks.txt" />
     <None Include="Assets\Tiny Dungeon Pack\Palette\Palette.txt" />
     <Reference Include="UnityEditor.StandardEvents">
