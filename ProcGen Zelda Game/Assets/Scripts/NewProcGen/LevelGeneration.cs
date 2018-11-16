@@ -5,17 +5,25 @@ using UnityEngine;
 public class LevelGeneration : MonoBehaviour {
 
     //Define the game world size
-    Vector2 worldSize = new Vector2(4, 4);
+    [SerializeField]
+    private Vector2 worldSize = new Vector2(4, 4);
 
     //Define 2D array to store rooms
     Room[,] rooms;
 
     //Define a list of Vector2 for the taken positions. Using a list, because it is easier to manipulate later on
-    List<Vector2> takenPositions = new List<Vector2>();
+    private List<Vector2> takenPositions = new List<Vector2>();
 
-    int gridSizeX, gridSizeY, numberOfRooms = 20;
+
+    private int gridSizeX, gridSizeY;
+
+
+     [SerializeField]
+    private int numberOfRooms = 20;
 
     public GameObject roomWhiteObj;
+
+    public Transform mapRoot;
 
     private void Start()
     {
@@ -32,6 +40,7 @@ public class LevelGeneration : MonoBehaviour {
         CreateRooms(); //lays out the actual map
         SetRoomDoors(); //assigns the doors where rooms would connect
         DrawMap(); //instantiates objects to make up a map
+        GetComponent<SheetAssigner>().Assign(rooms); //passes room info to another script which handles generatating the level geometry
 
     }
 
@@ -186,6 +195,7 @@ public class LevelGeneration : MonoBehaviour {
 
     int NumberOfNeighbors(Vector2 checkingPos, List<Vector2> usedPositions)
     {
+        //We take an int set to zero and increment it each time we are checking the positions
         int ret = 0;
 
         if (usedPositions.Contains(checkingPos + Vector2.right))
@@ -211,13 +221,14 @@ public class LevelGeneration : MonoBehaviour {
 
     void SetRoomDoors()
     {
+        //The following two for loops allow us to check every position inside of the array...
         for (int x = 0; x < ((gridSizeX * 2)); x++)
         {
             for (int y = 0; y < ((gridSizeY * 2)); y++)
             {
                 if (rooms[x, y] == null)
                 {
-                    continue;
+                    continue; //If there is no room, the loop will continue, otherwise we will check each cardinal point inside of the grid to see if there are rooms
                 }
                 Vector2 gridPosition = new Vector2(x, y);
                 if (y - 1 < 0)
@@ -258,22 +269,26 @@ public class LevelGeneration : MonoBehaviour {
 
     void DrawMap()
     {
+        //Loop through each room inside of the rooms array
         foreach (Room room in rooms)
         {
             if (room == null)
             {
                 continue; //skip where there is no room
             }
+            //Grab each rooms position and multiply it by the size of the sprite
             Vector2 drawPos = room.gridPos;
             drawPos.x *= 16;//aspect ratio of map sprite
             drawPos.y *= 8;
-            //create map obj and assign its variables
+
+            //create map obj and assign its variables to the room that it represents
             MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
             mapper.type = room.type;
             mapper.up = room.doorTop;
             mapper.down = room.doorBot;
             mapper.right = room.doorRight;
             mapper.left = room.doorLeft;
+            mapper.gameObject.transform.parent = mapRoot;
         }
     }
 }

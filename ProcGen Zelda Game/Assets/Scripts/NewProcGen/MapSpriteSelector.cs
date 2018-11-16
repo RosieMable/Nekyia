@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class MapSpriteSelector : MonoBehaviour {
 
-
+    // This are reference for the sprites that are going to be assigned inside of the ide
     public Sprite spU, spD, spR, spL,
                 spUD, spRL, spUR, spUL, spDR, spDL,
                 spULD, spRUL, spDRU, spLDR, spUDRL;
+
+
+    //Variables that will be set from the room data
     public bool up, down, left, right;
     public int type; // 0: normal, 1: enter
+
+
+    //Variables to assign different colors to different rooms
     public Color normalColor, enterColor;
-    Color mainColor;
-    SpriteRenderer rend;
+    private Color mainColor;
+
+    private SpriteRenderer rend;
+
+
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
@@ -20,6 +29,8 @@ public class MapSpriteSelector : MonoBehaviour {
         PickSprite();
         PickColor();
     }
+
+
     void PickSprite()
     { //picks correct sprite based on the four door bools
         if (up)

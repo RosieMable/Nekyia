@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4206581820870774}
   - component: {fileID: 212586189563946882}
   - component: {fileID: 114667432756809282}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MapSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
