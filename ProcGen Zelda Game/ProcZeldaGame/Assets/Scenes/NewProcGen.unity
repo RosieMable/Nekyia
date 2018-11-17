@@ -312,7 +312,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sheetsNormal:
-  - {fileID: 2800000, guid: 087e2e02457fc9b46bad319f210eece2, type: 3}
+  - {fileID: 2800000, guid: 921167405de8ebb4c8c705abf7d9784d, type: 3}
   - {fileID: 2800000, guid: 921167405de8ebb4c8c705abf7d9784d, type: 3}
   - {fileID: 2800000, guid: 1e8ad206707f3c8469d8928ebd78a240, type: 3}
   - {fileID: 2800000, guid: 15e75078ae7f88f438edb1a57cf437f9, type: 3}
