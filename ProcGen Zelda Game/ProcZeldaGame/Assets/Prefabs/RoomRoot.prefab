@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tex: {fileID: 0}
   gridPos: {x: 0, y: 0}
-  type: 0
+  type: 1
   doorTop: 0
   doorBot: 0
   doorLeft: 0

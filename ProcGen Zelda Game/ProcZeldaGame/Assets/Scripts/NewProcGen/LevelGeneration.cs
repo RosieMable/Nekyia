@@ -17,9 +17,8 @@ public class LevelGeneration : MonoBehaviour {
 
     private int gridSizeX, gridSizeY;
 
-
-     [SerializeField]
-    private int numberOfRooms = 20;
+    
+    public int numberOfRooms = 20;
 
     public GameObject roomWhiteObj;
 
