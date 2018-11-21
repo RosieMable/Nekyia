@@ -404,7 +404,7 @@ MonoBehaviour:
   smoothing: 1
   maxPosition: {x: 13, y: 5, z: 0}
   minPosition: {x: -10, y: -10, z: 0}
-  cameraChange: {x: 0, y: 20, z: 0}
+  cameraChange: {x: 274, y: 0, z: 0}
   playerChange: {x: 0, y: 20, z: 0}
 --- !u!1 &1922996994
 GameObject:
