@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4368186545508860}
   - component: {fileID: 212962045339529700}
   - component: {fileID: 61850886973323820}
-  - component: {fileID: 114518414296628772}
+  - component: {fileID: 114955086056479976}
   m_Layer: 0
   m_Name: DoorDown
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1021241212451138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.5432587, y: -134.36497, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 16, y: 16}
   m_EdgeRadius: 0
---- !u!114 &114518414296628772
+--- !u!114 &114955086056479976
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

@@ -68,7 +68,7 @@ MonoBehaviour:
   - color: {r: 0, g: 0, b: 0, a: 1}
     prefab: {fileID: 1785603848506908, guid: 359ba37969708f24c859dc98a9b5a84c, type: 2}
   - color: {r: 1, g: 1, b: 1, a: 1}
-    prefab: {fileID: 1682620417044356, guid: af33ab634337c4f489ee58ddfe6a3467, type: 2}
+    prefab: {fileID: 1021241212451138, guid: 949d259b0d6067d4895ba455bf995cd1, type: 2}
   - color: {r: 0, g: 0, b: 1, a: 1}
     prefab: {fileID: 1132586047390324, guid: e155bcd526e0bd94794f10ac87ba4cff, type: 2}
   - color: {r: 0, g: 1, b: 0.8235294, a: 1}
@@ -86,7 +86,7 @@ MonoBehaviour:
   - color: {r: 0.32941177, g: 0, b: 1, a: 1}
     prefab: {fileID: 1174331081068862, guid: b391730f88749ae499735799c7951ea0, type: 2}
   - color: {r: 1, g: 0.9647059, b: 0, a: 1}
-    prefab: {fileID: 1021241212451138, guid: 949d259b0d6067d4895ba455bf995cd1, type: 2}
+    prefab: {fileID: 1682620417044356, guid: af33ab634337c4f489ee58ddfe6a3467, type: 2}
 --- !u!212 &212757020420079458
 SpriteRenderer:
   m_ObjectHideFlags: 1
