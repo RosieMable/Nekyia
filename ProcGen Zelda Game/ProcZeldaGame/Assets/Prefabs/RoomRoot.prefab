@@ -59,16 +59,16 @@ MonoBehaviour:
   doorBot: 0
   doorLeft: 0
   doorRight: 0
-  doorU: {fileID: 1152370622949468, guid: e7e2fe31c79e40247b2f21395d5d1cd3, type: 2}
-  doorD: {fileID: 1152370622949468, guid: e7e2fe31c79e40247b2f21395d5d1cd3, type: 2}
-  doorL: {fileID: 1152370622949468, guid: e7e2fe31c79e40247b2f21395d5d1cd3, type: 2}
-  doorR: {fileID: 1152370622949468, guid: e7e2fe31c79e40247b2f21395d5d1cd3, type: 2}
+  doorU: {fileID: 1682620417044356, guid: af33ab634337c4f489ee58ddfe6a3467, type: 2}
+  doorD: {fileID: 1021241212451138, guid: 949d259b0d6067d4895ba455bf995cd1, type: 2}
+  doorL: {fileID: 1174331081068862, guid: b391730f88749ae499735799c7951ea0, type: 2}
+  doorR: {fileID: 1410090145873114, guid: 023525b9af0e79344b09d206cff93f7f, type: 2}
   doorWall: {fileID: 1348133729177994, guid: 0f6dc9f6aee96a84f927c302cd7a8ae8, type: 2}
   mappings:
   - color: {r: 0, g: 0, b: 0, a: 1}
     prefab: {fileID: 1785603848506908, guid: 359ba37969708f24c859dc98a9b5a84c, type: 2}
   - color: {r: 1, g: 1, b: 1, a: 1}
-    prefab: {fileID: 1152370622949468, guid: e7e2fe31c79e40247b2f21395d5d1cd3, type: 2}
+    prefab: {fileID: 1682620417044356, guid: af33ab634337c4f489ee58ddfe6a3467, type: 2}
   - color: {r: 0, g: 0, b: 1, a: 1}
     prefab: {fileID: 1132586047390324, guid: e155bcd526e0bd94794f10ac87ba4cff, type: 2}
   - color: {r: 0, g: 1, b: 0.8235294, a: 1}
@@ -81,6 +81,12 @@ MonoBehaviour:
     prefab: {fileID: 1465442432070554, guid: 974812212128a5b48bcee8e61a4a744d, type: 2}
   - color: {r: 0, g: 1, b: 0.21176471, a: 1}
     prefab: {fileID: 1581108476554146, guid: 3e983469b316ef24fafc5f7dc528e6b0, type: 2}
+  - color: {r: 1, g: 0.3529412, b: 0, a: 1}
+    prefab: {fileID: 1410090145873114, guid: 023525b9af0e79344b09d206cff93f7f, type: 2}
+  - color: {r: 0.32941177, g: 0, b: 1, a: 1}
+    prefab: {fileID: 1174331081068862, guid: b391730f88749ae499735799c7951ea0, type: 2}
+  - color: {r: 1, g: 0.9647059, b: 0, a: 1}
+    prefab: {fileID: 1021241212451138, guid: 949d259b0d6067d4895ba455bf995cd1, type: 2}
 --- !u!212 &212757020420079458
 SpriteRenderer:
   m_ObjectHideFlags: 1

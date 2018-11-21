@@ -9,32 +9,32 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1152370622949468}
+  m_RootGameObject: {fileID: 1682620417044356}
   m_IsPrefabAsset: 1
---- !u!1 &1152370622949468
+--- !u!1 &1682620417044356
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4111353177199620}
-  - component: {fileID: 212058162008467170}
-  - component: {fileID: 61406581372063362}
-  - component: {fileID: 114320805326456414}
+  - component: {fileID: 4345685314030382}
+  - component: {fileID: 212806139352154830}
+  - component: {fileID: 61559705435842894}
+  - component: {fileID: 114032631170654658}
   m_Layer: 0
-  m_Name: DoorTrigger
+  m_Name: DoorUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4111353177199620
+--- !u!4 &4345685314030382
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1152370622949468}
+  m_GameObject: {fileID: 1682620417044356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -42,12 +42,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61406581372063362
+--- !u!61 &61559705435842894
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1152370622949468}
+  m_GameObject: {fileID: 1682620417044356}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -67,24 +67,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 16, y: 16}
   m_EdgeRadius: 0
---- !u!114 &114320805326456414
+--- !u!114 &114032631170654658
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1152370622949468}
+  m_GameObject: {fileID: 1682620417044356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f16667f6f667534c89fad063cbcd84a, type: 3}
+  m_Script: {fileID: 11500000, guid: 97aa8a2c2b59f5c4eac19d01ffaae5fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Destination: {fileID: 0}
---- !u!212 &212058162008467170
+  distanceBetweenRooms: {x: 0, y: 0}
+--- !u!212 &212806139352154830
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1152370622949468}
+  m_GameObject: {fileID: 1682620417044356}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
