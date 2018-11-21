@@ -2,28 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour {
-
-
+public class CameraMovement : MonoBehaviour
+{
     [SerializeField]
     private Transform target;
 
     [SerializeField]
-    private float smoothing;
+    public float smoothing;
 
     [SerializeField]
-    private Vector2 maxPosition;
+    public Vector3 maxPosition;
 
     [SerializeField]
-    private Vector2 minPosition;
+    public Vector3 minPosition;
 
+
+    [SerializeField]
+    private Vector3 cameraChange;
+
+    [SerializeField]
+    private Vector3 playerChange;
 	// Use this for initialization
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void LateUpdate () {
+
+    void LateUpdate()
+    {
 
         target = GameObject.FindObjectOfType<Hero>().transform;
 
@@ -40,5 +45,13 @@ public class CameraMovement : MonoBehaviour {
             camPos.y = Mathf.Clamp(targetPos.y, minPosition.y, maxPosition.y);
 
         }
-	}
+    }
+
+
+    public void MoveUp()
+    {
+        minPosition += cameraChange;
+        maxPosition += cameraChange;
+        target.transform.position += playerChange;
+    }
 }
