@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class RoomInstance : MonoBehaviour {
 
+    private Camera camera;
+
     public Texture2D tex;
 
     [HideInInspector]
@@ -40,6 +42,10 @@ public class RoomInstance : MonoBehaviour {
         GenerateRoomTiles();
     }
 
+    private void FixedUpdate()
+    {
+        TrackPlayer(type);
+    }
 
     private void MakeDoors()
     {
@@ -101,8 +107,6 @@ public class RoomInstance : MonoBehaviour {
             }
             else
             {
-                //forgot to remove the old print for the tutorial lol so I'll leave it here too
-                //print(mapping.color + ", " + pixelColor);
             }
         }
     }
@@ -119,6 +123,16 @@ public class RoomInstance : MonoBehaviour {
         return ret;
     }
 
+
+  public void TrackPlayer(int _type)
+    {
+        camera = Camera.main;
+
+        if (camera.transform.position == this.transform.position)
+        {
+            _type = 2;
+        }
+    }
 
    
 }

@@ -28,7 +28,7 @@ public class Doors : MonoBehaviour
 
     void Start()
     {
-        distanceBetweenRooms = new Vector2(209f, 106);
+        distanceBetweenRooms = new Vector2(208f, 104);
         distanceBetweenDoors = new Vector2( 100 , 55);
 
 

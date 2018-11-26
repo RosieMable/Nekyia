@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Invoke("SpawnPlayer", 1);
+        Invoke("SpawnPlayer", 0);
 
         if (PlayerGO == null)
         {

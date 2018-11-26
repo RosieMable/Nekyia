@@ -43,7 +43,6 @@ public class LevelGeneration : MonoBehaviour {
 
     }
 
-
     void CreateRooms()
     {
         //Setup of rooms
@@ -290,5 +289,7 @@ public class LevelGeneration : MonoBehaviour {
             mapper.gameObject.transform.parent = mapRoot;
         }
     }
+
+
 }
     

@@ -131,6 +131,10 @@ public class MapSpriteSelector : MonoBehaviour {
         {
             mainColor = enterColor;
         }
+        else if (type == 2)
+        {
+            mainColor = Color.red;
+        }
         rend.color = mainColor;
     }
 }
