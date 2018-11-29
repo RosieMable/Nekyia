@@ -161,7 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 411332616}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MapRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1110703955}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -310,6 +311,81 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 1651510319843940, guid: 4009f940f69dd0e408931baa8842478a,
     type: 2}
+--- !u!1 &1110703954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1110703955}
+  - component: {fileID: 1110703956}
+  m_Layer: 8
+  m_Name: Heart
+  m_TagString: PlayerPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1110703955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110703954}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_Children: []
+  m_Father: {fileID: 411332616}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1110703956
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110703954}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 62359b7851e4f0344b51f37c103d34fa, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 7, y: 7}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1345126292
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +497,8 @@ MonoBehaviour:
   roomWhiteObj: {fileID: 1275852341870714, guid: f58f04a7ca906204f95f29856bbb14b7,
     type: 2}
   mapRoot: {fileID: 411332616}
+  isGoalSpawned: 0
+  GoalIndex: 0
 --- !u!4 &1922996996
 Transform:
   m_ObjectHideFlags: 0
@@ -452,6 +530,12 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 15e75078ae7f88f438edb1a57cf437f9, type: 3}
   - {fileID: 2800000, guid: 648d883d76120364d9b8ff6bc191a70a, type: 3}
   - {fileID: 2800000, guid: 1777f53432628ba448bc5696dcfd961a, type: 3}
+  bossRooms:
+  - {fileID: 2800000, guid: 25b24579989a720439a9dbda2acbaa71, type: 3}
+  - {fileID: 2800000, guid: 5e49912a55127c24180c480ddc39d4cb, type: 3}
+  - {fileID: 2800000, guid: c67eecb2fee920a4ba1215ea6a41c4e3, type: 3}
+  - {fileID: 2800000, guid: 63f210ba54bb3444485d1123499d9d02, type: 3}
+  EntranceRooms:
   - {fileID: 2800000, guid: 010192a16cee52346866a47d69434b3a, type: 3}
   RoomObj: {fileID: 1139517517763576, guid: 8269e61bb812ba1458a8ce6d99c7ae9d, type: 2}
   roomDimensions: {x: 272, y: 144}

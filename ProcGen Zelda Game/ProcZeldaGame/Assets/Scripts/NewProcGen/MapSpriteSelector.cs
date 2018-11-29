@@ -12,7 +12,7 @@ public class MapSpriteSelector : MonoBehaviour {
 
     //Variables that will be set from the room data
     public bool up, down, left, right;
-    public int type; // 0: normal, 1: enter
+    public int type; // 0: enter, 1: normal, 2: possible exit
 
 
     //Variables to assign different colors to different rooms
@@ -125,11 +125,11 @@ public class MapSpriteSelector : MonoBehaviour {
     { //changes color based on what type the room is
         if (type == 0)
         {
-            mainColor = normalColor;
+            mainColor = enterColor;
         }
         else if (type == 1)
         {
-            mainColor = enterColor;
+            mainColor = normalColor;
         }
         else if (type == 2)
         {

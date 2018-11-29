@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Camera\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\CharactersScripts\CharacterBaseScript.cs" />
     <Compile Include="Assets\Scripts\CharactersScripts\Hero\Hero.cs" />
+    <Compile Include="Assets\Scripts\Dialogues\Dialogue.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\NewProcGen\ColorToGameObject.cs" />
     <Compile Include="Assets\Scripts\NewProcGen\Doors\DoorDown.cs" />

@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Doors : MonoBehaviour
 {
+    protected GameObject PlayerPoint;
 
     protected Camera camera;
 
     protected GameObject Hero;
 
-    protected Vector3 moveJumpDoor = Vector2.zero;
-    protected Vector3 moveJump = Vector2.zero;
-    protected float horMove, vertMove;
+  
 
     [SerializeField]
     protected float Time = 20f;
@@ -22,6 +21,9 @@ public class Doors : MonoBehaviour
     [SerializeField]
     protected Vector2 distanceBetweenRooms;
 
+    [SerializeField]
+    protected Vector2 distanceBetweenPlayerPoints;
+
     protected float ValueX;
 
     protected float ValueY;
@@ -29,11 +31,11 @@ public class Doors : MonoBehaviour
     void Start()
     {
         distanceBetweenRooms = new Vector2(208f, 104);
+
         distanceBetweenDoors = new Vector2( 100 , 55);
 
+        distanceBetweenPlayerPoints = new Vector2(8, 4);
 
-        moveJump = new Vector3(distanceBetweenRooms.x, distanceBetweenRooms.y, -20); //distance b/w rooms: to be used for movement
-        moveJumpDoor = new Vector3(distanceBetweenDoors.x, distanceBetweenDoors.y, -20);
     }
 
     private void Update()
@@ -43,46 +45,67 @@ public class Doors : MonoBehaviour
 
         Hero = FindObjectOfType<Hero>().gameObject;
 
+        PlayerPoint = GameObject.FindGameObjectWithTag("PlayerPoint");
     }
 
     protected void MoveUp()
     {
+        //Moves the camera
         Vector3 tempPos = camera.transform.position;
         ValueY = tempPos.y += distanceBetweenRooms.y;
         Mathf.Lerp(camera.transform.position.y, ValueY, Time);
         tempPos.z = -20f;
         camera.transform.position = tempPos;
 
-
+        //Moves the hero
         Vector3 tempPosPC = Hero.transform.position;
         tempPosPC.y += distanceBetweenDoors.y;
         Hero.transform.position = tempPosPC;
+
+        //Move the PlayerPoint
+        Vector3 tempPosPP = PlayerPoint.transform.position;
+        tempPosPP.y += distanceBetweenPlayerPoints.y;
+        PlayerPoint.transform.position = tempPosPP;
     }
 
     protected void MoveDown()
     {
+        //Moves the camera down
         Vector3 tempPos = camera.transform.position;
         ValueY = tempPos.y -= distanceBetweenRooms.y;
         Mathf.Lerp(camera.transform.position.y,ValueY, Time);
         tempPos.z = -20f;
         camera.transform.position = tempPos;
 
+        //Moves the hero down
         Vector3 tempPosPC = Hero.transform.position;
         tempPosPC.y -= distanceBetweenDoors.y;
         Hero.transform.position = tempPosPC;
+
+        //Move the PlayerPoint
+        Vector3 tempPosPP = PlayerPoint.transform.position;
+        tempPosPP.y -= distanceBetweenPlayerPoints.y;
+        PlayerPoint.transform.position = tempPosPP;
     }
 
     protected void MoveLeft()
     {
+        //Moves the camera Left
         Vector3 tempPos = camera.transform.position;
         ValueX = tempPos.x -= distanceBetweenRooms.x;
         Mathf.Lerp(camera.transform.position.x, ValueX, Time);
         tempPos.z = -20f;
         camera.transform.position = tempPos;
 
+        //Moves the hero left
         Vector3 tempPosPC = Hero.transform.position;
         tempPosPC.x -= distanceBetweenDoors.x;
         Hero.transform.position = tempPosPC;
+
+        //Move the PlayerPoint
+        Vector3 tempPosPP = PlayerPoint.transform.position;
+        tempPosPP.x -= distanceBetweenPlayerPoints.x;
+        PlayerPoint.transform.position = tempPosPP;
     }
 
     protected void MoveRight()
@@ -96,5 +119,11 @@ public class Doors : MonoBehaviour
         Vector3 tempPosPC = Hero.transform.position;
         tempPosPC.x += distanceBetweenDoors.x;
         Hero.transform.position = tempPosPC;
+
+
+        //Move the PlayerPoint
+        Vector3 tempPosPP = PlayerPoint.transform.position;
+        tempPosPP.x += distanceBetweenPlayerPoints.x;
+        PlayerPoint.transform.position = tempPosPP;
     }
 }

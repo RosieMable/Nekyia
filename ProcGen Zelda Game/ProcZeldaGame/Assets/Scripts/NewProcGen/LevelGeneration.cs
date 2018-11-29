@@ -24,6 +24,10 @@ public class LevelGeneration : MonoBehaviour {
 
     public Transform mapRoot;
 
+    public bool isGoalSpawned = false;
+
+    public int GoalIndex;
+
     private void Start()
     {
         //Function to be certain that there aren't more rooms then what the grid can fit in
@@ -47,7 +51,7 @@ public class LevelGeneration : MonoBehaviour {
     {
         //Setup of rooms
         rooms = new Room[gridSizeX * 2, gridSizeY * 2]; //Creates as many rooms as the world grid
-        rooms[gridSizeX, gridSizeY] = new Room(Vector2.zero, 1); // Sets up where the roomsgrid will start (at the center of the scene) and the type of the room (it's 1 because is the starting room)
+        rooms[gridSizeX, gridSizeY] = new Room(Vector2.zero, 0); // Sets up where the roomsgrid will start (at the center of the scene) and the type of the room (it's 1 because is the starting room)
         takenPositions.Insert(0, Vector2.zero); //Insert the first value (a vector2 zero) as the first element of the takenposition array
         Vector2 checkPos = Vector2.zero; //Defines a local variable that will be later on manipulated
 
@@ -84,12 +88,22 @@ public class LevelGeneration : MonoBehaviour {
                     print("ERROR: could not create with fewer neighbors than: " + NumberOfNeighbors(checkPos, takenPositions));
                 }
             }
-
             //Finalize position
             //Add the rooms to the array of taken positions
-            rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new Room(checkPos, 0);
+            rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new Room(checkPos, 1);
             takenPositions.Insert(0, checkPos);
+
+            GoalIndex = Random.Range(0, 1);
+
         }
+
+        if (isGoalSpawned == false)
+        {
+            Vector2 GoalVector2 = takenPositions[GoalIndex];
+            rooms[(int)GoalVector2.x + gridSizeX, (int)GoalVector2.y + gridSizeY] = new Room(GoalVector2, 2);
+            isGoalSpawned = true;
+        }
+
 
     }
 

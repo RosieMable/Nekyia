@@ -71,7 +71,7 @@ MonoBehaviour:
   down: 1
   left: 0
   right: 0
-  type: 0
+  type: 2
   normalColor: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
   enterColor: {r: 0.3820755, g: 0.9822136, b: 1, a: 1}
 --- !u!212 &212586189563946882
