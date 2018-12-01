@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\CharactersScripts\CharacterBaseScript.cs" />
+    <Compile Include="Assets\Scripts\CharactersScripts\Enemies\Slime.cs" />
+    <Compile Include="Assets\Scripts\CharactersScripts\EnemyBaseScript.cs" />
     <Compile Include="Assets\Scripts\CharactersScripts\Hero\Hero.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Dialogue.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />

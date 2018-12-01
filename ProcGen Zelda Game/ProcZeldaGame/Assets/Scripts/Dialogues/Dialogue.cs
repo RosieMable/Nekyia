@@ -35,7 +35,7 @@ public class Dialogue : MonoBehaviour {
         if (other.gameObject == Player)
         {
             DialogueBox.SetActive(true);
-            dialogueText.text = dialogue;
+            StartCoroutine("WriteText");
             isDialogActive = true;
         }
     }
@@ -46,6 +46,17 @@ public class Dialogue : MonoBehaviour {
         {
             DialogueBox.SetActive(false);
             isDialogActive = false;
+        }
+    }
+
+    private IEnumerator WriteText()
+    {
+        dialogueText.text = "";
+
+        foreach (char letter in dialogue.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(0.10f);
         }
     }
 }
