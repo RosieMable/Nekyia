@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerState
+{
+    idle,
+    walk,
+    attack,
+    interact,
+    stagger
+}
+
 public class Hero : CharacterBaseScript {
 
-    private PlayerState currentState;
+   public PlayerState currentState;
 
-    public enum PlayerState
-    {
-        walk,
-        attack,
-        interact
-    }
 
     protected override void Start()
     {
@@ -32,13 +35,17 @@ public class Hero : CharacterBaseScript {
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack)
+        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
         {
             StartCoroutine("AttackCourutine");
         }
-        else if (currentState == PlayerState.walk)
+        else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
             AnimatorController();
+        }
+        else if (currentState == PlayerState.stagger)
+        {
+            StartCoroutine("StaggerCouroutine");
         }
     }
 
@@ -59,6 +66,17 @@ public class Hero : CharacterBaseScript {
         }
     }
 
+    private IEnumerator StaggerCouroutine()
+    {
+        animator.SetBool("stagger", true);
+        yield return null;
+
+        animator.SetBool("stagger", false);
+        yield return new WaitForSeconds(0.5f);
+
+        currentState = PlayerState.walk;
+    }
+
    private IEnumerator AttackCourutine()
     {
         animator.SetBool("attacking", true);
@@ -69,5 +87,25 @@ public class Hero : CharacterBaseScript {
         yield return new WaitForSeconds(0.5f);
 
         currentState = PlayerState.walk;
+    }
+
+    public void KnockPlayer(float knockTime)
+    {
+        StartCoroutine(KnockCo(knockTime));
+
+    }
+
+
+    private IEnumerator KnockCo(float knockTime)
+    {
+        if (Mybody != null)
+        {
+            yield return new WaitForSeconds(knockTime);
+            Mybody.velocity = Vector2.zero;
+            Mybody.isKinematic = true;
+
+            //After the knock back, changes the state of the enemy
+            currentState = PlayerState.idle;
+        }
     }
 }

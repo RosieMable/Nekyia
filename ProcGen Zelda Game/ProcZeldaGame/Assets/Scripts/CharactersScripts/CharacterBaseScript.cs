@@ -19,7 +19,7 @@ public class CharacterBaseScript : MonoBehaviour {
     [SerializeField]
     protected int Damage;
 
-    protected Rigidbody2D body;
+    protected Rigidbody2D Mybody;
 
     protected Collider2D collider;
 
@@ -27,12 +27,12 @@ public class CharacterBaseScript : MonoBehaviour {
 
     protected Animator animator;
 
-    private void Awake()
+    protected void Awake()
     {
-        body = gameObject.AddComponent<Rigidbody2D>();
+        Mybody = gameObject.AddComponent<Rigidbody2D>();
         source = gameObject.AddComponent<AudioSource>();
-        body.gravityScale = 0;
-        body.constraints = RigidbodyConstraints2D.FreezeRotation;
+        Mybody.gravityScale = 0;
+        Mybody.constraints = RigidbodyConstraints2D.FreezeRotation;
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -44,7 +44,7 @@ public class CharacterBaseScript : MonoBehaviour {
     protected void MoveCharacter()
     {
         change.Normalize();
-        body.MovePosition(transform.position + change * speed * Time.deltaTime);
+        Mybody.MovePosition(transform.position + change * speed * Time.deltaTime);
     }
 
     protected void Die()
