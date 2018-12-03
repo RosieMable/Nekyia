@@ -14,10 +14,10 @@ public class CharacterBaseScript : MonoBehaviour {
     protected float speed;
 
     [SerializeField]
-    protected int HitPoints;
+    protected float HitPoints;
 
     [SerializeField]
-    protected int Damage;
+    protected float Damage;
 
     protected Rigidbody2D Mybody;
 
@@ -49,10 +49,8 @@ public class CharacterBaseScript : MonoBehaviour {
 
     protected void Die()
     {
-        if (HitPoints <= 0)
-        {
-            Destroy(gameObject);
-        }
+        this.gameObject.SetActive(false);
+
     }
 
     protected virtual void AnimatorController()

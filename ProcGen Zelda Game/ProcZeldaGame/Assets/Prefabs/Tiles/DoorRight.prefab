@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1410090145873114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 61.13558, y: -8.456746, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -65,7 +65,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16, y: 16}
+  m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
 --- !u!114 &114489773969757000
 MonoBehaviour:
@@ -78,7 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b219a2d76b68724e8c5fb9a732d7648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Time: 20
+  distanceBetweenDoors: {x: 0, y: 0}
   distanceBetweenRooms: {x: 0, y: 0}
+  distanceBetweenPlayerPoints: {x: 0, y: 0}
 --- !u!212 &212459549681060934
 SpriteRenderer:
   m_ObjectHideFlags: 1

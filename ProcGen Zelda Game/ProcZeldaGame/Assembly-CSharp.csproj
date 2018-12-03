@@ -63,8 +63,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\CharactersScripts\CharacterBaseScript.cs" />
+    <Compile Include="Assets\Scripts\CharactersScripts\Enemies\EnemyBaseScript.cs" />
     <Compile Include="Assets\Scripts\CharactersScripts\Enemies\Slime.cs" />
-    <Compile Include="Assets\Scripts\CharactersScripts\EnemyBaseScript.cs" />
     <Compile Include="Assets\Scripts\CharactersScripts\Hero\Hero.cs" />
     <Compile Include="Assets\Scripts\CharactersScripts\Hero\KnockBack.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Dialogue.cs" />
@@ -82,7 +82,11 @@
     <Compile Include="Assets\Scripts\NewProcGen\SheetAssigner.cs" />
     <Compile Include="Assets\Scripts\NewProcGen\TutorialMovement.cs" />
     <Compile Include="Assets\Scripts\NewProcGen\UtilityBehaviors.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\FloatValue.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\Signal.cs" />
+    <Compile Include="Assets\Scripts\SignalListener.cs" />
     <Compile Include="Assets\Scripts\UI\GameStart.cs" />
+    <Compile Include="Assets\Scripts\UI\HealthManagerUI.cs" />
     <None Include="Assets\Tiny Dungeon Pack\Thanks.txt" />
     <None Include="Assets\Tiny Dungeon Pack\Palette\Palette.txt" />
     <Reference Include="UnityEditor.StandardEvents">

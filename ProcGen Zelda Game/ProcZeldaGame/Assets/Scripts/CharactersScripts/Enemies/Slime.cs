@@ -14,16 +14,13 @@ public class Slime : EnemyBaseScript {
     // Update is called once per frame
     void FixedUpdate () {
 
-        CheckDistance();
+        if (target == null)
+        {
+            target = FindObjectOfType<Hero>().transform;
+        }
 
-        if (currentState == EnemyState.stagger)
-        {
-            animator.SetBool("stagger", true);
-        }
-        else
-        {
-            animator.SetBool("stagger", false);
-        }
+
+        CheckDistance();
     }
 
 }

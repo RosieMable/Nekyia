@@ -46,6 +46,8 @@ public class Doors : MonoBehaviour
         Hero = FindObjectOfType<Hero>().gameObject;
 
         PlayerPoint = GameObject.FindGameObjectWithTag("PlayerPoint");
+
+        DestroyIfWall();
     }
 
     protected void MoveUp()
@@ -125,5 +127,22 @@ public class Doors : MonoBehaviour
         Vector3 tempPosPP = PlayerPoint.transform.position;
         tempPosPP.x += distanceBetweenPlayerPoints.x;
         PlayerPoint.transform.position = tempPosPP;
+    }
+
+    protected void DestroyIfWall()
+    {
+        GameObject[] doorWall;
+
+        doorWall = GameObject.FindGameObjectsWithTag("DoorWall");
+
+        foreach (GameObject wall in doorWall)
+        {
+            if (wall.transform.position.x == transform.position.x && wall.transform.position.y == transform.position.y)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+
+
     }
 }

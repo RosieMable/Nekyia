@@ -14,6 +14,8 @@ public enum PlayerState
 public class Hero : CharacterBaseScript {
 
    public PlayerState currentState;
+   public FloatValue currentHealth;
+    public Signal PlayerHealthSignal;
 
 
     protected override void Start()
@@ -26,7 +28,8 @@ public class Hero : CharacterBaseScript {
     void Update () {
 
         GetInput();
-        
+
+        HitPoints = currentHealth.initialValue;
 	}
 
     void GetInput()
@@ -89,9 +92,20 @@ public class Hero : CharacterBaseScript {
         currentState = PlayerState.walk;
     }
 
-    public void KnockPlayer(float knockTime)
+    public void KnockPlayer(float knockTime, float damage)
     {
-        StartCoroutine(KnockCo(knockTime));
+        currentHealth.RuntimeValue -= damage;
+        PlayerHealthSignal.Raise();
+
+        if (currentHealth.RuntimeValue > 0)
+        {
+            StartCoroutine(KnockCo(knockTime));
+        }
+        else
+        {
+            Die();
+        }
+
 
     }
 
@@ -101,11 +115,13 @@ public class Hero : CharacterBaseScript {
         if (Mybody != null)
         {
             yield return new WaitForSeconds(knockTime);
-            Mybody.velocity = Vector2.zero;
             Mybody.isKinematic = true;
+            Mybody.velocity = Vector2.zero;
+            
 
             //After the knock back, changes the state of the enemy
             currentState = PlayerState.idle;
+            Mybody.isKinematic = false;
         }
     }
 }

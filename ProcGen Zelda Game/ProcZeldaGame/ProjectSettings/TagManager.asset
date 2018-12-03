@@ -8,6 +8,7 @@ TagManager:
   - SpawnPoint
   - PlayerPoint
   - Enemy
+  - DoorWall
   layers:
   - Default
   - TransparentFX

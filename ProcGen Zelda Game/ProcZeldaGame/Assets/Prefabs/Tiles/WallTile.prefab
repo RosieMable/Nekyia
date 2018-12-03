@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61342844830375196}
   m_Layer: 0
   m_Name: WallTile
-  m_TagString: Untagged
+  m_TagString: DoorWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +64,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 23.278442, y: 23.424072}
+  m_Size: {x: 16, y: 16}
   m_EdgeRadius: 0
 --- !u!212 &212837628303806704
 SpriteRenderer:
