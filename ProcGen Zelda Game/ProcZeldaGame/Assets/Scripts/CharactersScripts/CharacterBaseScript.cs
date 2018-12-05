@@ -27,7 +27,7 @@ public class CharacterBaseScript : MonoBehaviour {
 
     protected Animator animator;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         Mybody = gameObject.AddComponent<Rigidbody2D>();
         source = gameObject.AddComponent<AudioSource>();
@@ -37,7 +37,8 @@ public class CharacterBaseScript : MonoBehaviour {
     }
 
     // Use this for initialization
-   protected virtual void Start () {
+    protected virtual void Start ()
+    {
 		
 	}
 
@@ -49,7 +50,7 @@ public class CharacterBaseScript : MonoBehaviour {
 
     protected void Die()
     {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
 
     }
 

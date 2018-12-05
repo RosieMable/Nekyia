@@ -8,7 +8,7 @@ public class Doors : MonoBehaviour
 
     protected Camera camera;
 
-    protected GameObject Hero;
+//    protected GameObject Hero;
 
   
 
@@ -43,15 +43,24 @@ public class Doors : MonoBehaviour
 
         camera = Camera.main;
 
-        Hero = FindObjectOfType<Hero>().gameObject;
+//        Hero = FindObjectOfType<Hero>().gameObject;
 
         PlayerPoint = GameObject.FindGameObjectWithTag("PlayerPoint");
 
         DestroyIfWall();
     }
 
+    Hero GetHero()
+    {
+        return FindObjectOfType<Hero>();
+    }
+
     protected void MoveUp()
     {
+        Hero tHero;
+
+        if ((tHero=GetHero()) == null) return;
+
         //Moves the camera
         Vector3 tempPos = camera.transform.position;
         ValueY = tempPos.y += distanceBetweenRooms.y;
@@ -60,9 +69,9 @@ public class Doors : MonoBehaviour
         camera.transform.position = tempPos;
 
         //Moves the hero
-        Vector3 tempPosPC = Hero.transform.position;
+        Vector3 tempPosPC = tHero.transform.position;
         tempPosPC.y += distanceBetweenDoors.y;
-        Hero.transform.position = tempPosPC;
+        tHero.transform.position = tempPosPC;
 
         //Move the PlayerPoint
         Vector3 tempPosPP = PlayerPoint.transform.position;
@@ -72,6 +81,10 @@ public class Doors : MonoBehaviour
 
     protected void MoveDown()
     {
+        Hero tHero;
+
+        if ((tHero = GetHero()) == null) return;
+
         //Moves the camera down
         Vector3 tempPos = camera.transform.position;
         ValueY = tempPos.y -= distanceBetweenRooms.y;
@@ -80,9 +93,9 @@ public class Doors : MonoBehaviour
         camera.transform.position = tempPos;
 
         //Moves the hero down
-        Vector3 tempPosPC = Hero.transform.position;
+        Vector3 tempPosPC = tHero.transform.position;
         tempPosPC.y -= distanceBetweenDoors.y;
-        Hero.transform.position = tempPosPC;
+        tHero.transform.position = tempPosPC;
 
         //Move the PlayerPoint
         Vector3 tempPosPP = PlayerPoint.transform.position;
@@ -92,6 +105,10 @@ public class Doors : MonoBehaviour
 
     protected void MoveLeft()
     {
+        Hero tHero;
+
+        if ((tHero = GetHero()) == null) return;
+
         //Moves the camera Left
         Vector3 tempPos = camera.transform.position;
         ValueX = tempPos.x -= distanceBetweenRooms.x;
@@ -100,9 +117,9 @@ public class Doors : MonoBehaviour
         camera.transform.position = tempPos;
 
         //Moves the hero left
-        Vector3 tempPosPC = Hero.transform.position;
+        Vector3 tempPosPC = tHero.transform.position;
         tempPosPC.x -= distanceBetweenDoors.x;
-        Hero.transform.position = tempPosPC;
+        tHero.transform.position = tempPosPC;
 
         //Move the PlayerPoint
         Vector3 tempPosPP = PlayerPoint.transform.position;
@@ -112,15 +129,19 @@ public class Doors : MonoBehaviour
 
     protected void MoveRight()
     {
+        Hero tHero;
+
+        if ((tHero = GetHero()) == null) return;
+
         Vector3 tempPos = camera.transform.position;
         ValueX = tempPos.x += distanceBetweenRooms.x;
         Mathf.Lerp(camera.transform.position.x, ValueX, Time);
         tempPos.z = -20f;
         camera.transform.position = tempPos;
 
-        Vector3 tempPosPC = Hero.transform.position;
+        Vector3 tempPosPC = tHero.transform.position;
         tempPosPC.x += distanceBetweenDoors.x;
-        Hero.transform.position = tempPosPC;
+        tHero.transform.position = tempPosPC;
 
 
         //Move the PlayerPoint

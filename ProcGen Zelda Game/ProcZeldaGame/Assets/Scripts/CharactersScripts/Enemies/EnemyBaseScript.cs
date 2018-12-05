@@ -34,18 +34,37 @@ public class EnemyBaseScript : CharacterBaseScript {
 
     public FloatValue maxHealth;
 
-    protected void Awake()
+    protected override void Awake()
     {
         base.Awake();
-
     }
-
 
     protected override void Start()
     {
+        if (target == null)
+        {
+            StartCoroutine(SetTarget());
+        }
 
         HitPoints = maxHealth.initialValue;
     }
+
+    IEnumerator  SetTarget()
+    {
+        Hero tGO;
+        do
+        {
+            tGO=FindObjectOfType<Hero>();
+            Debug.Log("Looking for Hero");
+            if (tGO!=null)
+            {
+                target = FindObjectOfType<Hero>().transform;
+            }
+            yield return new WaitForSeconds(1);
+        } while (target == null);
+        Debug.Log("Found Hero");
+    }
+
     protected void Update()
     {
         if (target == null)
@@ -65,7 +84,7 @@ public class EnemyBaseScript : CharacterBaseScript {
 
     protected void CheckDistance()
     {
-
+        if (target == null) return;
         if (Vector3.Distance(target.position, transform.position) <= ChaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius)
         {
             // Dont want to move the enemy while they are in attack or stagger state
