@@ -9,7 +9,7 @@ public class LevelGeneration : MonoBehaviour {
     private Vector2 worldSize = new Vector2(4, 4);
 
     //Define 2D array to store rooms
-    Room[,] rooms;
+    public Room[,] rooms;
 
     //Define a list of Vector2 for the taken positions. Using a list, because it is easier to manipulate later on
     private List<Vector2> takenPositions = new List<Vector2>();
@@ -51,7 +51,7 @@ public class LevelGeneration : MonoBehaviour {
     {
         //Setup of rooms
         rooms = new Room[gridSizeX * 2, gridSizeY * 2]; //Creates as many rooms as the world grid
-        rooms[gridSizeX, gridSizeY] = new Room(Vector2.zero, 0); // Sets up where the roomsgrid will start (at the center of the scene) and the type of the room (it's 1 because is the starting room)
+        rooms[gridSizeX, gridSizeY] = new Room(Vector2.zero, 0); // Sets up where the roomsgrid will start (at the center of the scene) and the type of the room (it's 0 because is the starting room)
         takenPositions.Insert(0, Vector2.zero); //Insert the first value (a vector2 zero) as the first element of the takenposition array
         Vector2 checkPos = Vector2.zero; //Defines a local variable that will be later on manipulated
 
@@ -65,14 +65,15 @@ public class LevelGeneration : MonoBehaviour {
         {
             //A bit of math to define the percentage of the odds of branching out rooms or not
             //The further we get into the loop, the less likely the rooms will branch out
-            float randomPerc = ((float)i / ((float)numberOfRooms - 1)); //How many rooms are left to create?
+            float randomPerc = ((float)i / ((float)numberOfRooms - 1)); //how many room we are left to create
             randomCompare = Mathf.Lerp(randomCompareStart, randomCompareEnd, randomPerc);
 
             //Grab new position
             checkPos = NewPosition();
 
             //Test new position 
-            //To make the map shape more interesting
+            //To make the map shape more interesting, so it is not claped all together, the more it goes into the loop, the less likely the rooms will branch out
+
             if (NumberOfNeighbors(checkPos, takenPositions) > 1 && Random.value > randomCompare)
             {
                 int iterations = 0;
@@ -89,16 +90,19 @@ public class LevelGeneration : MonoBehaviour {
                 }
             }
             //Finalize position
-            //Add the rooms to the array of taken positions
-            rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new Room(checkPos, 1);
+            //Add the rooms to the array of taken positions, we also calculate the offset of the room, since we have first stated the array at the centre of the scene
+            rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new Room(checkPos, 1); //We insert the first to be the entrance one (type 1)
             takenPositions.Insert(0, checkPos);
+            //The other rooms (type zero) are added afterwards
 
-            GoalIndex = Random.Range(0, 1);
+            GoalIndex = 0;
 
         }
 
+        //Spawns a room of type 2 (boss room in this case) if the goal hasnt been spawned yet 
         if (isGoalSpawned == false)
         {
+            //Takes from the takenPosition the vector with index 0, which is going to be the most distant one from the centre of the 2D array
             Vector2 GoalVector2 = takenPositions[GoalIndex];
             rooms[(int)GoalVector2.x + gridSizeX, (int)GoalVector2.y + gridSizeY] = new Room(GoalVector2, 2);
             isGoalSpawned = true;
@@ -169,10 +173,13 @@ public class LevelGeneration : MonoBehaviour {
                 index = Mathf.RoundToInt(Random.value * (takenPositions.Count - 1));
                 inc++;
             } while (NumberOfNeighbors(takenPositions[index], takenPositions) > 1 && inc < 100);
+
             x = (int)takenPositions[index].x;
             y = (int)takenPositions[index].y;
+
             bool UpDown = (Random.value < 0.5f);
             bool positive = (Random.value < 0.5f);
+
             if (UpDown)
             {
                 if (positive)
@@ -198,7 +205,7 @@ public class LevelGeneration : MonoBehaviour {
             checkingPos = new Vector2(x, y);
         } while (takenPositions.Contains(checkingPos) || x >= gridSizeX || x < -gridSizeX || y >= gridSizeY || y < -gridSizeY);
         if (inc >= 100)
-        { // break loop if it takes too long: this loop isnt garuanteed to find solution, which is fine for this
+        { 
             print("Error: could not find position with only one neighbor");
         }
         return checkingPos;
@@ -234,6 +241,7 @@ public class LevelGeneration : MonoBehaviour {
     void SetRoomDoors()
     {
         //The following two for loops allow us to check every position inside of the array...
+        //And it looks at the boundaries dictated by the grid, in order to determine whether or not to spawn a door and what type it should be
         for (int x = 0; x < ((gridSizeX * 2)); x++)
         {
             for (int y = 0; y < ((gridSizeY * 2)); y++)
@@ -243,7 +251,7 @@ public class LevelGeneration : MonoBehaviour {
                     continue; //If there is no room, the loop will continue, otherwise we will check each cardinal point inside of the grid to see if there are rooms
                 }
                 Vector2 gridPosition = new Vector2(x, y);
-                if (y - 1 < 0)
+                if (y - 1 <= 0)
                 { //check above
                     rooms[x, y].doorBot = false;
                 }
@@ -257,7 +265,7 @@ public class LevelGeneration : MonoBehaviour {
                 }
                 else
                 {
-                    rooms[x, y].doorTop = (rooms[x, y + 1] != null);
+                    rooms[x, y].doorTop = (rooms[x, y + 1] != null); 
                 }
                 if (x - 1 < 0)
                 { //check left

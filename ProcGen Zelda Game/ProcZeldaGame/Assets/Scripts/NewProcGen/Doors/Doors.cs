@@ -30,6 +30,8 @@ public class Doors : MonoBehaviour
 
     void Start()
     {
+
+        //These numbers represents the amount of "tiles" that the player, camera and playerpoint (the little landmark on the UI map) has to move, when the player goes through a door
         distanceBetweenRooms = new Vector2(208f, 104);
 
         distanceBetweenDoors = new Vector2( 100 , 55);
@@ -42,8 +44,6 @@ public class Doors : MonoBehaviour
     {
 
         camera = Camera.main;
-
-//        Hero = FindObjectOfType<Hero>().gameObject;
 
         PlayerPoint = GameObject.FindGameObjectWithTag("PlayerPoint");
 

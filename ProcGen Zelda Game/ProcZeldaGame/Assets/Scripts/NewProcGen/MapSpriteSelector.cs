@@ -5,7 +5,8 @@ using UnityEngine;
 public class MapSpriteSelector : MonoBehaviour {
 
     // This are reference for the sprites that are going to be assigned inside of the ide
-    public Sprite spU, spD, spR, spL,
+    [SerializeField]
+    private Sprite spU, spD, spR, spL,
                 spUD, spRL, spUR, spUL, spDR, spDL,
                 spULD, spRUL, spDRU, spLDR, spUDRL;
 

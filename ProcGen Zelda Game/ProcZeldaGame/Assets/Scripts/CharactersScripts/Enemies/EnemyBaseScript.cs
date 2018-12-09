@@ -65,15 +65,6 @@ public class EnemyBaseScript : CharacterBaseScript {
         Debug.Log("Found Hero");
     }
 
-    protected void Update()
-    {
-        if (target == null)
-        {
-            target = FindObjectOfType<Hero>().transform;
-        }
-      
-    }
-
     protected void ChangeState(EnemyState newState)
     {
         if (currentState != newState)
@@ -82,6 +73,7 @@ public class EnemyBaseScript : CharacterBaseScript {
         }
     }
 
+    //Methods that determine the enemy behaviour depending on its distance from the PC
     protected void CheckDistance()
     {
         if (target == null) return;
@@ -106,17 +98,15 @@ public class EnemyBaseScript : CharacterBaseScript {
 
             }
 
-        }
+        } //If the enemy is within attack range, then...
         else if (Vector3.Distance(target.position, transform.position) <= attackRadius)
         {
             ChangeState(EnemyState.attack);
             Attack();
         }
-
         else
         {
             ChangeState(EnemyState.idle);
-
         }
     }
 
@@ -125,7 +115,8 @@ public class EnemyBaseScript : CharacterBaseScript {
         HitPoints -= damage;
         if (HitPoints <= 0)
         {
-            this.gameObject.SetActive(false);
+            Die();
+            Instantiate(ItemDrop, transform);
         }
     }
 
@@ -136,7 +127,7 @@ public class EnemyBaseScript : CharacterBaseScript {
     }
 
 
-    protected  IEnumerator KnockCo(Rigidbody2D MyRigidBody, float knockTime)
+    private  IEnumerator KnockCo(Rigidbody2D MyRigidBody, float knockTime)
     {
         if (MyRigidBody != null)
         {
@@ -194,7 +185,8 @@ public class EnemyBaseScript : CharacterBaseScript {
         StartCoroutine("AttackCourutine");
     }
 
-    protected IEnumerator AttackCourutine()
+    //Coroutine that controls the attack animation and the attack state automatically for the enemies
+    IEnumerator AttackCourutine()
     {
         animator.SetBool("attack", true);
         currentState = EnemyState.attack;
