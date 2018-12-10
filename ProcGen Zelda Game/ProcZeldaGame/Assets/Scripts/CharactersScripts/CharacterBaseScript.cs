@@ -52,7 +52,6 @@ public class CharacterBaseScript : MonoBehaviour {
     protected void Die()
     {
         gameObject.SetActive(false); //General Function to delete an enemy when it has no health left, SetActive is used so that we don't have to worry about the garbage collection of .NET
-
     }
 
     //Virtual method to be modified in the derived classes for their animations

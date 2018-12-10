@@ -18,6 +18,13 @@ public class GameStart : MonoBehaviour {
     {
         Application.Quit();
     }
+
+    public void ExitTutorial()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+
 }
         
         

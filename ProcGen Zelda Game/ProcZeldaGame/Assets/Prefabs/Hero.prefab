@@ -436,6 +436,7 @@ MonoBehaviour:
   currentState: 0
   currentHealth: {fileID: 11400000, guid: 8c29fca0763a4e04c9a24eba82b59a9f, type: 2}
   PlayerHealthSignal: {fileID: 11400000, guid: d5eb98f163ae623428fac76b1140b4d2, type: 2}
+  GameOver: {fileID: 11400000, guid: 743311cc367ed8a4da43a9a514612b90, type: 2}
 --- !u!114 &114225281744421772
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -246,6 +246,8 @@ GameObject:
   - component: {fileID: 825455161}
   - component: {fileID: 825455162}
   - component: {fileID: 825455163}
+  - component: {fileID: 825455165}
+  - component: {fileID: 825455164}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -279,6 +281,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 1350543307953230, guid: 4009f940f69dd0e408931baa8842478a,
     type: 2}
+  ExitDoorPrefab: {fileID: 1869010053920676, guid: a6e871edb2a0a0f41a846c426c7d371a,
+    type: 2}
+  BossSpawnerPos: {fileID: 0}
+  ExitDoorPos: {x: 0, y: 0, z: 0}
 --- !u!114 &825455162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +324,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3c325398ca76f46ad7c830f7afe6ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &825455164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825455159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f172ae828f89d84490b62ba7b20fea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: 743311cc367ed8a4da43a9a514612b90, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 825455161}
+        m_MethodName: DisplayGameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &825455165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825455159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f172ae828f89d84490b62ba7b20fea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: fd95d29fcbec5a84ab468aa708704ae2, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 825455161}
+        m_MethodName: SpawnExitDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1110703954
 GameObject:
   m_ObjectHideFlags: 0

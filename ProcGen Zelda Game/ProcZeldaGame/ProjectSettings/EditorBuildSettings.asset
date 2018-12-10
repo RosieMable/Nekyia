@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TutorialScene.unity
     guid: 07142a34c348bfa4d815dccadf3036b8
+  - enabled: 1
+    path: Assets/Scenes/NewProcGen.unity
+    guid: 03e21aa6175dda349aebe92eb4f93f7d
+  - enabled: 1
+    path: Assets/Scenes/EndGameScreen.unity
+    guid: 00b87056c032b8849b8c617db21ea5b4
+  - enabled: 1
+    path: Assets/Scenes/GameOverScreen.unity
+    guid: a0119548e5418c84c91302e8305f6859
   m_configObjects: {}

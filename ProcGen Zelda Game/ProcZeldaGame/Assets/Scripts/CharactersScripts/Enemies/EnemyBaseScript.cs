@@ -10,7 +10,8 @@ public enum EnemyState //Public enumerator that will be used to determine the AI
     stagger
 }
 
-public class EnemyBaseScript : CharacterBaseScript {
+public class EnemyBaseScript : CharacterBaseScript
+{
 
     public EnemyState currentState; //Reference to the current state of the enemy
 
@@ -44,14 +45,14 @@ public class EnemyBaseScript : CharacterBaseScript {
     }
 
     //Coroutine that looks for the target, until it hasn't been found
-    IEnumerator  SetTarget()
+    IEnumerator SetTarget()
     {
         Hero tGO;
         do
         {
-            tGO=FindObjectOfType<Hero>();
+            tGO = FindObjectOfType<Hero>();
 
-            if (tGO!=null)
+            if (tGO != null)
             {
                 target = FindObjectOfType<Hero>().transform;
             }
@@ -113,7 +114,7 @@ public class EnemyBaseScript : CharacterBaseScript {
         HitPoints -= damage; //Damage - current health
         if (HitPoints <= 0) //If no health left
         {
-            Die();//...the enemy dies
+            Die(); //...the enemy dies
         }
     }
 
@@ -124,7 +125,7 @@ public class EnemyBaseScript : CharacterBaseScript {
     }
 
 
-    private  IEnumerator KnockCo(Rigidbody2D MyRigidBody, float knockTime) //Coroutine that is started immediately after the thrust for the knockback has been applied
+    private IEnumerator KnockCo(Rigidbody2D MyRigidBody, float knockTime) //Coroutine that is started immediately after the thrust for the knockback has been applied
     {
         if (MyRigidBody != null) //The coroutine takes a rigidbody to manipulate and float value to determine the duration of the stagger state
         {
@@ -139,8 +140,6 @@ public class EnemyBaseScript : CharacterBaseScript {
             MyRigidBody.isKinematic = false;
         }
     }
-
-
 
     //Method to quickly assing the float values for the enemy blend tree
     protected void SetAnimFloat(Vector2 setVector)
@@ -159,17 +158,20 @@ public class EnemyBaseScript : CharacterBaseScript {
             {
                 SetAnimFloat(Vector2.right);
             }
+
             else if (direction.x < 0) //Going Left
             {
                 SetAnimFloat(Vector2.left);
             }
         }
+
         else if (Mathf.Abs(direction.x) < (Mathf.Abs(direction.y)))
         {
             if (direction.y > 0) // Going up
             {
                 SetAnimFloat(Vector2.up);
             }
+
             else if (direction.y < 0) // Going down
             {
                 SetAnimFloat(Vector2.down);
@@ -194,5 +196,4 @@ public class EnemyBaseScript : CharacterBaseScript {
 
         currentState = EnemyState.walk; //Set the state back to walk
     }
-
 }

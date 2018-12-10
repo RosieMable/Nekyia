@@ -16,7 +16,7 @@ public class Hero : CharacterBaseScript {
    public PlayerState currentState; //Reference to the enum
    public FloatValue currentHealth; //Reference to the signal-pattern system, it indicates the current health
     public Signal PlayerHealthSignal; //Signal used when the player gets hit, so that the UI can be updated
-
+    public Signal GameOver;
 
     protected override void Start()
     {
@@ -106,6 +106,8 @@ public class Hero : CharacterBaseScript {
         }
         else
         {
+            GameOver.Raise();
+
             Die();
         }
     }
