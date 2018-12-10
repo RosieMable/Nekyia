@@ -113,46 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &298611093
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 298611094}
-  - component: {fileID: 298611095}
-  m_Layer: 0
-  m_Name: Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &298611094
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 298611093}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &298611095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 298611093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae3c325398ca76f46ad7c830f7afe6ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &411332615
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +245,7 @@ GameObject:
   - component: {fileID: 825455160}
   - component: {fileID: 825455161}
   - component: {fileID: 825455162}
+  - component: {fileID: 825455163}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -303,7 +264,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &825455161
 MonoBehaviour:
@@ -346,6 +307,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &825455163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825455159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3c325398ca76f46ad7c830f7afe6ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1110703954
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +481,7 @@ Prefab:
     - target: {fileID: 224931936359416040, guid: 50fcdccc82c0d9d4aa9e4db980b497b0,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224931936359416040, guid: 50fcdccc82c0d9d4aa9e4db980b497b0,
         type: 2}
@@ -549,7 +521,7 @@ Prefab:
     - target: {fileID: 224931936359416040, guid: 50fcdccc82c0d9d4aa9e4db980b497b0,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224931936359416040, guid: 50fcdccc82c0d9d4aa9e4db980b497b0,
         type: 2}
@@ -850,7 +822,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2084251260}
   - component: {fileID: 2084251259}
-  - component: {fileID: 2084251258}
   m_Layer: 0
   m_Name: MapCamera
   m_TagString: Untagged
@@ -858,13 +829,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2084251258
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2084251257}
-  m_Enabled: 1
 --- !u!20 &2084251259
 Camera:
   m_ObjectHideFlags: 0

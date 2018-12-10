@@ -28,21 +28,22 @@ public class EnemyBaseScript : CharacterBaseScript {
 
     public FloatValue maxHealth; //Reference to the scriptable object that holds the health of the enemy
 
-    protected override void Awake()
+    protected override void Awake() //Calls the base script
     {
         base.Awake();
     }
 
     protected override void Start()
     {
-        if (target == null)
+        if (target == null) //Sets the target if it is null
         {
             StartCoroutine(SetTarget());
         }
 
-        HitPoints = maxHealth.initialValue;
+        HitPoints = maxHealth.initialValue; //Set the hit points to be equal to the gloatvalue
     }
 
+    //Coroutine that looks for the target, until it hasn't been found
     IEnumerator  SetTarget()
     {
         Hero tGO;
@@ -58,6 +59,7 @@ public class EnemyBaseScript : CharacterBaseScript {
         } while (target == null);
     }
 
+    //Method to quickly change the current state of the enemy
     protected void ChangeState(EnemyState newState)
     {
         if (currentState != newState)
@@ -69,7 +71,10 @@ public class EnemyBaseScript : CharacterBaseScript {
     //Methods that determine the enemy behaviour depending on its distance from the PC
     protected void CheckDistance()
     {
-        if (target == null) return;
+        if (target == null) return; //If there isn't a target, stop
+
+        //Calculates the distance between the target and the enemy positions, 
+        //if this is less than the chase radius value but grater than the attack radius value, then the enemy starts moving towards the target
         if (Vector3.Distance(target.position, transform.position) <= ChaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius)
         {
             // Dont want to move the enemy while they are in attack or stagger state
@@ -94,43 +99,43 @@ public class EnemyBaseScript : CharacterBaseScript {
         } //If the enemy is within attack range, then...
         else if (Vector3.Distance(target.position, transform.position) <= attackRadius)
         {
-            ChangeState(EnemyState.attack);
-            Attack();
+            ChangeState(EnemyState.attack); //Change state to attack
+            Attack(); //Calls the method attack
         }
         else
         {
-            ChangeState(EnemyState.idle);
+            ChangeState(EnemyState.idle); //Changes states to dile
         }
     }
 
-    private void TakeDamage(float damage)
+    private void TakeDamage(float damage) //Method that will be called whenever a knockback occours
     {
-        HitPoints -= damage;
-        if (HitPoints <= 0)
+        HitPoints -= damage; //Damage - current health
+        if (HitPoints <= 0) //If no health left
         {
-            Die();
+            Die();//...the enemy dies
         }
     }
 
-    public void Knock(Rigidbody2D MyRigidbody, float knockTime, float damage)
+    public void Knock(Rigidbody2D MyRigidbody, float knockTime, float damage) // Method called in the knockback script whenever the enemy gets hit
     {
-        StartCoroutine(KnockCo(MyRigidbody, knockTime));
-        TakeDamage(damage);
+        StartCoroutine(KnockCo(MyRigidbody, knockTime)); //Starts the coroutine for the stagger
+        TakeDamage(damage); //Calls the take damage method
     }
 
 
-    private  IEnumerator KnockCo(Rigidbody2D MyRigidBody, float knockTime)
+    private  IEnumerator KnockCo(Rigidbody2D MyRigidBody, float knockTime) //Coroutine that is started immediately after the thrust for the knockback has been applied
     {
-        if (MyRigidBody != null)
+        if (MyRigidBody != null) //The coroutine takes a rigidbody to manipulate and float value to determine the duration of the stagger state
         {
-            animator.SetBool("stagger", true);
-            yield return new WaitForSeconds(knockTime);
-            MyRigidBody.velocity = Vector2.zero;
-            MyRigidBody.isKinematic = true;
+            animator.SetBool("stagger", true); //Reference to the animator (plays the stagger animation)
+            yield return new WaitForSeconds(knockTime); //Waits for the knock time value before continuing
+            MyRigidBody.velocity = Vector2.zero; //Set the rigid body velocity to zero, so it stops
+            MyRigidBody.isKinematic = true; //Turn the kinematic bool to true, so that the body can not be moved, if not by script
 
             //After the knock back, changes the state of the enemy
             currentState = EnemyState.idle;
-            animator.SetBool("stagger", false);
+            animator.SetBool("stagger", false); //Finish the animation
             MyRigidBody.isKinematic = false;
         }
     }
@@ -172,22 +177,22 @@ public class EnemyBaseScript : CharacterBaseScript {
         }
     }
 
-    protected void Attack()
+    protected void Attack() //Method that is called when the enemy is within attack range
     {
-        StartCoroutine(AttackCourutine());
+        StartCoroutine(AttackCourutine()); //Reference to the attack coroutine
     }
 
     //Coroutine that controls the attack animation and the attack state automatically for the enemies
     IEnumerator AttackCourutine()
     {
-        animator.SetBool("attack", true);
+        animator.SetBool("attack", true); //Reference to the attack animation
         currentState = EnemyState.attack;
         yield return null;
 
         animator.SetBool("attack", false);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f); //After the attack...
 
-        currentState = EnemyState.walk;
+        currentState = EnemyState.walk; //Set the state back to walk
     }
 
 }

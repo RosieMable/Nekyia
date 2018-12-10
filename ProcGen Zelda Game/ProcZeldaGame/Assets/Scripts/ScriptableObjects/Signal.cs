@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//Script for the observer
+//Script for the signal, it can be created as a scriptable object from the IDE
 [CreateAssetMenu]
 public class Signal : ScriptableObject {
 

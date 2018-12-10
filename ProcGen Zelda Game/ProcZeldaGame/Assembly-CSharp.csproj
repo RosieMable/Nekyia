@@ -88,8 +88,8 @@
     <Compile Include="Assets\Scripts\SignalListener.cs" />
     <Compile Include="Assets\Scripts\UI\GameStart.cs" />
     <Compile Include="Assets\Scripts\UI\HealthManagerUI.cs" />
-    <None Include="Assets\Tiny Dungeon Pack\Thanks.txt" />
-    <None Include="Assets\Tiny Dungeon Pack\Palette\Palette.txt" />
+    <None Include="Assets\Graphics\Tiny Dungeon Pack\Thanks.txt" />
+    <None Include="Assets\Graphics\Tiny Dungeon Pack\Palette\Palette.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/GitHub/Procedurally-Generated-ZeldaGame/ProcGen Zelda Game/ProcZeldaGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
