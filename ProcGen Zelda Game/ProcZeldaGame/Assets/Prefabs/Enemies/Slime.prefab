@@ -382,7 +382,6 @@ MonoBehaviour:
   HitPoints: 2
   Damage: 1
   currentState: 0
-  ItemDrop: {fileID: 0}
   EnemyName: Slimy
   target: {fileID: 0}
   ChaseRadius: 100

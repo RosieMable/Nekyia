@@ -13,13 +13,14 @@ public class MapSpriteSelector : MonoBehaviour {
 
     //Variables that will be set from the room data
     public bool up, down, left, right;
-    public int type; // 0: enter, 1: normal, 2: possible exit
+    public int type; // 0: enter, 1: normal, 2: BossRoom possible exit
 
 
     //Variables to assign different colors to different rooms
     public Color normalColor, enterColor;
     private Color mainColor;
 
+    //Reference to the sprite renderer
     private SpriteRenderer rend;
 
 
@@ -27,11 +28,11 @@ public class MapSpriteSelector : MonoBehaviour {
     {
         rend = GetComponent<SpriteRenderer>();
         mainColor = normalColor;
-        PickSprite();
-        PickColor();
+        PickSprite(); //Method to pick the sprite depending on the door bools -> It is called in the start method of the script, which is going to be called by the lvlgen
+        PickColor(); //Picks the right color for the sprite, depending on the type of the room
     }
 
-
+    #region PickSprite- Method to pick the sprite depending on the door bools -> It is called in the start method of the script, which is going to be called by the lvlgen
     void PickSprite()
     { //picks correct sprite based on the four door bools
         if (up)
@@ -121,7 +122,9 @@ public class MapSpriteSelector : MonoBehaviour {
             rend.sprite = spL;
         }
     }
+    #endregion
 
+    #region PickColor - Picks the right color for the sprite, depending on the type of the room
     void PickColor()
     { //changes color based on what type the room is
         if (type == 0)
@@ -138,4 +141,5 @@ public class MapSpriteSelector : MonoBehaviour {
         }
         rend.color = mainColor;
     }
+    #endregion
 }

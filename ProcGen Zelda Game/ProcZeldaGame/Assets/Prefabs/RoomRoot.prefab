@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c911d5436f47d041a77d47e550ef390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tex: {fileID: 0}
+  tex: {fileID: 2800000, guid: 010192a16cee52346866a47d69434b3a, type: 3}
   gridPos: {x: 0, y: 0}
   type: 1
   doorTop: 0

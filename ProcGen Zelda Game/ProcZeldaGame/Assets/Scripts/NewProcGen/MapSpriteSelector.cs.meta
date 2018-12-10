@@ -3,7 +3,22 @@ guid: d3510cc82f6fc0e419ce89aeedd01973
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - spU: {fileID: 21300000, guid: 038f994b6f950bd4d9abda083c70bc8a, type: 3}
+  - spD: {instanceID: 0}
+  - spR: {instanceID: 0}
+  - spL: {instanceID: 0}
+  - spUD: {instanceID: 0}
+  - spRL: {instanceID: 0}
+  - spUR: {instanceID: 0}
+  - spUL: {instanceID: 0}
+  - spDR: {instanceID: 0}
+  - spDL: {instanceID: 0}
+  - spULD: {instanceID: 0}
+  - spRUL: {instanceID: 0}
+  - spDRU: {instanceID: 0}
+  - spLDR: {instanceID: 0}
+  - spUDRL: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

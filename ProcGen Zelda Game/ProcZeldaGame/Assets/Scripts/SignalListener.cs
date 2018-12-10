@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class SignalListener : MonoBehaviour {
 
+    //The signalListener "listens" to a specific game object from which it is waiting to hear a "signal"
+    //To that signal there is an event that the listener will call
 
     public Signal signal;
     public UnityEvent signalEvent;

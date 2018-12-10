@@ -4,7 +4,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; set; }
+    #region Singleton
+    public static GameManager sGM; //Allows access to singleton
+                                   //Being static means you can acess without knowing instance
+    private void Awake()            //Runs before Start
+    {
+        if (sGM == null)            //Has it been set up before?
+        {
+            sGM = this;             //No, its the first Time creation of Game Manager, so store our instance
+            DontDestroyOnLoad(gameObject); //Persist, now it will survive scene reloads
+        }
+        else if (sGM != this) //If we get called again, then destroy new version and keep old one
+        {
+            Destroy(gameObject); //Kill any subsequent one
+        }
+    }
+    #endregion
 
     [SerializeField]
     private GameObject PlayerPrefab;
@@ -17,10 +32,6 @@ public class GameManager : MonoBehaviour
     {
         Invoke("SpawnPlayer", 0);
 
-        if (PlayerGO == null)
-        {
-
-        }
     }
 
     void SpawnPlayer()

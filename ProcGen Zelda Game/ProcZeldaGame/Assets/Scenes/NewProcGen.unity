@@ -182,6 +182,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &527111463 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114809412704404882, guid: 50fcdccc82c0d9d4aa9e4db980b497b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1660670637}
+  m_Script: {fileID: 11500000, guid: a636b5a71cb6e37438cad4226b6958ed, type: 3}
 --- !u!1 &718138886
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 825455160}
   - component: {fileID: 825455161}
+  - component: {fileID: 825455162}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -311,6 +318,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 1350543307953230, guid: 4009f940f69dd0e408931baa8842478a,
     type: 2}
+--- !u!114 &825455162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825455159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f172ae828f89d84490b62ba7b20fea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: d5eb98f163ae623428fac76b1140b4d2, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 527111463}
+        m_MethodName: UpdateHearts
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1110703954
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,7 +756,13 @@ Prefab:
       propertyPath: m_ChildAlignment
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114954748107034788, guid: 50fcdccc82c0d9d4aa9e4db980b497b0,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114954748107034788, guid: 50fcdccc82c0d9d4aa9e4db980b497b0, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 50fcdccc82c0d9d4aa9e4db980b497b0, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1922996994
@@ -754,7 +795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldSize: {x: 4, y: 4}
   numberOfRooms: 20
-  roomWhiteObj: {fileID: 1275852341870714, guid: f58f04a7ca906204f95f29856bbb14b7,
+  mapSpriteSelector: {fileID: 1275852341870714, guid: f58f04a7ca906204f95f29856bbb14b7,
     type: 2}
   mapRoot: {fileID: 411332616}
   isGoalSpawned: 0

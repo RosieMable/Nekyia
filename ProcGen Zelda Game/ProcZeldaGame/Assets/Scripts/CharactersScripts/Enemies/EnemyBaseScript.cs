@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyState
+public enum EnemyState //Public enumerator that will be used to determine the AI states
 {
     idle,
     walk,
@@ -12,27 +12,21 @@ public enum EnemyState
 
 public class EnemyBaseScript : CharacterBaseScript {
 
-    public EnemyState currentState;
+    public EnemyState currentState; //Reference to the current state of the enemy
 
     [SerializeField]
-    protected GameObject ItemDrop;
+    protected string EnemyName; //String containing the name of the enemy
 
     [SerializeField]
-    protected string EnemyName;
+    protected Transform target; //Transform that will hold the position of the target, which the enemy will move towards
 
     [SerializeField]
-    protected Transform target;
+    protected float ChaseRadius; //Float value to determine the chase radius -> within this radius the enemy state will be "walking"
 
     [SerializeField]
-    protected float ChaseRadius;
+    protected float attackRadius; //Float value to determine the chase attack -> within this radius the enemy state will be "attacking"
 
-    [SerializeField]
-    protected float attackRadius;
-
-    [SerializeField]
-    protected Transform homePosition;
-
-    public FloatValue maxHealth;
+    public FloatValue maxHealth; //Reference to the scriptable object that holds the health of the enemy
 
     protected override void Awake()
     {
@@ -55,14 +49,13 @@ public class EnemyBaseScript : CharacterBaseScript {
         do
         {
             tGO=FindObjectOfType<Hero>();
-            Debug.Log("Looking for Hero");
+
             if (tGO!=null)
             {
                 target = FindObjectOfType<Hero>().transform;
             }
             yield return new WaitForSeconds(1);
         } while (target == null);
-        Debug.Log("Found Hero");
     }
 
     protected void ChangeState(EnemyState newState)
@@ -116,7 +109,6 @@ public class EnemyBaseScript : CharacterBaseScript {
         if (HitPoints <= 0)
         {
             Die();
-            Instantiate(ItemDrop, transform);
         }
     }
 
@@ -182,7 +174,7 @@ public class EnemyBaseScript : CharacterBaseScript {
 
     protected void Attack()
     {
-        StartCoroutine("AttackCourutine");
+        StartCoroutine(AttackCourutine());
     }
 
     //Coroutine that controls the attack animation and the attack state automatically for the enemies

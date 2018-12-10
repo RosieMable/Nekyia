@@ -5,55 +5,57 @@ using UnityEngine;
 public class CharacterBaseScript : MonoBehaviour {
 
     [SerializeField]
-    protected AudioSource source;
+    protected AudioSource source; //Reference to audioSource, so that the character can play audios
 
     [SerializeField]
-    protected AudioClip[] soundClips;
+    protected AudioClip[] soundClips; //Reference to array of sounds, going to be used for animation sounds
 
     [SerializeField]
-    protected float speed;
+    protected float speed; //Float value to use as value for movement speed
 
     [SerializeField]
-    protected float HitPoints;
+    protected float HitPoints; //How many lives the character has
 
     [SerializeField]
-    protected float Damage;
+    protected float Damage; //How much damage they can deal in one hit
 
-    protected Rigidbody2D Mybody;
+    protected Rigidbody2D Mybody; //Reference to the RigidiBody
 
-    protected Collider2D collider;
+    protected Collider2D collider; //Reference to the collider
 
-    protected Vector3 change;
+    protected Vector3 change;  //Vector3 that will hold data regarding where the character is going (direction)
 
-    protected Animator animator;
+    protected Animator animator; //Reference to the animator
 
     protected virtual void Awake()
     {
-        Mybody = gameObject.AddComponent<Rigidbody2D>();
-        source = gameObject.AddComponent<AudioSource>();
-        Mybody.gravityScale = 0;
-        Mybody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        animator = GetComponentInChildren<Animator>();
+        Mybody = gameObject.AddComponent<Rigidbody2D>(); //Adds RigidBody2D
+        source = gameObject.AddComponent<AudioSource>(); //Adds AudioSource
+        Mybody.gravityScale = 0; //Set the body not to be influenced by gravity
+        Mybody.constraints = RigidbodyConstraints2D.FreezeRotation; //Freeze the rotation of the body
+        animator = GetComponentInChildren<Animator>(); //Get reference to the animator
     }
 
-    // Use this for initialization
+    // Virtual Start to be modified in the derived classes
     protected virtual void Start ()
     {
 		
 	}
 
+    //General method to make a character move around
     protected void MoveCharacter()
     {
-        change.Normalize();
-        Mybody.MovePosition(transform.position + change * speed * Time.deltaTime);
+        change.Normalize(); //Takes the abs value of the Vector3
+        Mybody.MovePosition(transform.position + change * speed * Time.deltaTime); //Moves the body position towards the "change" (can be determined by player input or by code) multiplied by the speed value and deltatime
     }
 
     protected void Die()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); //General Function to delete an enemy when it has no health left, SetActive is used so that we don't have to worry about the garbage collection of .NET
 
     }
 
+    //Virtual method to be modified in the derived classes for their animations
     protected virtual void AnimatorController()
     {
        

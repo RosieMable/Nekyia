@@ -20,9 +20,9 @@ public class LevelGeneration : MonoBehaviour {
     
     public int numberOfRooms = 20;
 
-    public GameObject roomWhiteObj;
+    public GameObject mapSpriteSelector; //Used in the DrawMap method, it calls an object that knowns what map sprite to select depending on the room information given
 
-    public Transform mapRoot;
+    public Transform mapRoot; //Reference to the transform position of the camera that is going to hold the minimap
 
     public bool isGoalSpawned = false;
 
@@ -36,7 +36,7 @@ public class LevelGeneration : MonoBehaviour {
             numberOfRooms = Mathf.RoundToInt((worldSize.x * 2) * (worldSize.y * 2));
         }
 
-        //To be sure that te gridSizeX and Y value are exactly the same as the world size x and y
+        //To be sure that the gridSizeX and Y value are exactly the same as the world size x and y
         gridSizeX = Mathf.RoundToInt(worldSize.x);
         gridSizeY = Mathf.RoundToInt(worldSize.y);
 
@@ -47,16 +47,17 @@ public class LevelGeneration : MonoBehaviour {
 
     }
 
+    #region Create the rooms - Method to fill out the grid with rooms that are connected with each other and respect the boundaries of the grid
     void CreateRooms()
     {
         //Setup of rooms
         rooms = new Room[gridSizeX * 2, gridSizeY * 2]; //Creates as many rooms as the world grid
         rooms[gridSizeX, gridSizeY] = new Room(Vector2.zero, 0); // Sets up where the roomsgrid will start (at the center of the scene) and the type of the room (it's 0 because is the starting room)
-        takenPositions.Insert(0, Vector2.zero); //Insert the first value (a vector2 zero) as the first element of the takenposition array
+        takenPositions.Insert(0, Vector2.zero); //Insert the first value (a vector2 zero) as the first element of the takenposition array (creates the first room)
         Vector2 checkPos = Vector2.zero; //Defines a local variable that will be later on manipulated
 
 
-        // Magic numbers ???
+        // Local numbers used later on to create the odds if the rooms are going to branch out or not
         float randomCompare = 0.2f, randomCompareStart = 0.2f, randomCompareEnd = 0.01f;
 
         //Add rooms
@@ -72,7 +73,7 @@ public class LevelGeneration : MonoBehaviour {
             checkPos = NewPosition();
 
             //Test new position 
-            //To make the map shape more interesting, so it is not claped all together, the more it goes into the loop, the less likely the rooms will branch out
+            //To make the map shape more interesting, so it is not clamped all together, the more it goes into the loop, the less likely the rooms will branch out
 
             if (NumberOfNeighbors(checkPos, takenPositions) > 1 && Random.value > randomCompare)
             {
@@ -84,19 +85,15 @@ public class LevelGeneration : MonoBehaviour {
                     iterations++;
 
                 } while (NumberOfNeighbors(checkPos, takenPositions) > 1 && iterations < 100); // ...That has only one neighbor that connects to it
-                if (iterations >= 50)
-                {
-                    print("ERROR: could not create with fewer neighbors than: " + NumberOfNeighbors(checkPos, takenPositions));
-                }
             }
+
             //Finalize position
             //Add the rooms to the array of taken positions, we also calculate the offset of the room, since we have first stated the array at the centre of the scene
             rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new Room(checkPos, 1); //We insert the first to be the entrance one (type 1)
             takenPositions.Insert(0, checkPos);
             //The other rooms (type zero) are added afterwards
 
-            GoalIndex = 0;
-
+            GoalIndex = 0; //Setting the goal index (the boss room) to zero, since 0 is going to be the most distant position from the centre of the 2D array, which is where we start spawning the rooms
         }
 
         //Spawns a room of type 2 (boss room in this case) if the goal hasnt been spawned yet 
@@ -104,13 +101,15 @@ public class LevelGeneration : MonoBehaviour {
         {
             //Takes from the takenPosition the vector with index 0, which is going to be the most distant one from the centre of the 2D array
             Vector2 GoalVector2 = takenPositions[GoalIndex];
-            rooms[(int)GoalVector2.x + gridSizeX, (int)GoalVector2.y + gridSizeY] = new Room(GoalVector2, 2);
-            isGoalSpawned = true;
+            rooms[(int)GoalVector2.x + gridSizeX, (int)GoalVector2.y + gridSizeY] = new Room(GoalVector2, 2); //Spawns at the given vector2 a room of type 2
+            isGoalSpawned = true; //Set the bool to true so that there is only one boss room per level
         }
 
 
     }
+    #endregion
 
+    #region Grid Position Selectors - Methods to select the grid position of the room, depending on its neighbors
     //By grabbing the position of an already existing room, we are defining where the next one should be
     Vector2 NewPosition()
     {
@@ -157,7 +156,7 @@ public class LevelGeneration : MonoBehaviour {
     }
 
 
-
+    //This method is used to add the branching out effect to the map shape
     Vector2 SelectiveNewPosition()
     { // method differs from the above in the two commented ways
         int index = 0, inc = 0;
@@ -172,7 +171,7 @@ public class LevelGeneration : MonoBehaviour {
                 //has one neighbor. This will make it more likely that it returns a room that branches out
                 index = Mathf.RoundToInt(Random.value * (takenPositions.Count - 1));
                 inc++;
-            } while (NumberOfNeighbors(takenPositions[index], takenPositions) > 1 && inc < 100);
+            } while (NumberOfNeighbors(takenPositions[index], takenPositions) > 1 && inc < 100); //Uses te number of neighbors method to keep count of how many rooms have been spawned how they connect to each other
 
             x = (int)takenPositions[index].x;
             y = (int)takenPositions[index].y;
@@ -217,31 +216,33 @@ public class LevelGeneration : MonoBehaviour {
         //We take an int set to zero and increment it each time we are checking the positions
         int ret = 0;
 
-        if (usedPositions.Contains(checkingPos + Vector2.right))
+        if (usedPositions.Contains(checkingPos + Vector2.right)) //Check position on the right
         {
             ret++;
         }
-        if (usedPositions.Contains(checkingPos + Vector2.left))
+        if (usedPositions.Contains(checkingPos + Vector2.left)) //Check position on the left
         {
             ret++;
         }
-        if (usedPositions.Contains(checkingPos + Vector2.up))
+        if (usedPositions.Contains(checkingPos + Vector2.up)) //Check position above
         {
             ret++;
         }
-        if (usedPositions.Contains(checkingPos + Vector2.down))
+        if (usedPositions.Contains(checkingPos + Vector2.down)) //Check position below
         {
             ret++;
         }
 
         return ret;
     }
+    #endregion
 
-
+    #region Doors Setter
     void SetRoomDoors()
     {
         //The following two for loops allow us to check every position inside of the array...
-        //And it looks at the boundaries dictated by the grid, in order to determine whether or not to spawn a door and what type it should be
+        //And it looks at the boundaries dictated by the grid and the rooms that are around the one that we are checking,
+        //in order to determine whether or not to spawn a door and what type it should be
         for (int x = 0; x < ((gridSizeX * 2)); x++)
         {
             for (int y = 0; y < ((gridSizeY * 2)); y++)
@@ -286,7 +287,9 @@ public class LevelGeneration : MonoBehaviour {
             }
         }
     }
+    #endregion
 
+    #region Draw Map method
     void DrawMap()
     {
         //Loop through each room inside of the rooms array
@@ -301,17 +304,17 @@ public class LevelGeneration : MonoBehaviour {
             drawPos.x *= 16;//aspect ratio of map sprite
             drawPos.y *= 8;
 
-            //create map obj and assign its variables to the room that it represents
-            MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
+            //We instantiate the object and assign the right data to the respective variables
+            MapSpriteSelector mapper = Object.Instantiate(mapSpriteSelector, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
             mapper.type = room.type;
             mapper.up = room.doorTop;
             mapper.down = room.doorBot;
             mapper.right = room.doorRight;
             mapper.left = room.doorLeft;
-            mapper.gameObject.transform.parent = mapRoot;
+            mapper.gameObject.transform.parent = mapRoot; //Making all the object a child of the MapRoot object, so that the hierarchy is cleaner
         }
     }
-
+    #endregion
 
 }
-    
+

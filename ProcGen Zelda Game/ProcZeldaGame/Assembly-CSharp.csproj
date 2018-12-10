@@ -82,7 +82,6 @@
     <Compile Include="Assets\Scripts\NewProcGen\Room.cs" />
     <Compile Include="Assets\Scripts\NewProcGen\RoomInstance.cs" />
     <Compile Include="Assets\Scripts\NewProcGen\SheetAssigner.cs" />
-    <Compile Include="Assets\Scripts\NewProcGen\TutorialMovement.cs" />
     <Compile Include="Assets\Scripts\NewProcGen\UtilityBehaviors.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\FloatValue.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Signal.cs" />
