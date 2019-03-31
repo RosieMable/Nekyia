@@ -1,4 +1,4 @@
-# Procedurally-Generated-ZeldaGame
+# Nekyia 2D Procedurally generated rogue-like
 Nekyia
 A silent adventurer leaves the comforts of his house in the middle of the night, heading towards the Ancient Ruins. Slowly, but steadily he keeps venturing deeper in old mysteries and forgotten truths.
 
